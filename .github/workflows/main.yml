@@ -38,6 +38,6 @@ jobs:
           script: |
            
             # Move the files from the temporary deployment folder to /var/www/html
-            sudo mv /var/www/html/build/* /var/www/html/
+            sudo cp -r /var/www/html/build/* /var/www/html/
 
             sudo rm -rf /var/www/html/build
