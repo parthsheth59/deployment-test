@@ -27,4 +27,15 @@ jobs:
           username: ${{ secrets.EC2_USER }}                           
           key: ${{ secrets.EC2_PRIVATE_KEY }}          
           source: ./build/*                           
-          target: ${{ secrets.EC2_TARGET }}                        
+          target: ${{ secrets.EC2_TARGET }}   
+
+      - name: Run Deployment Script on EC2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+           
+            # Move the files from the temporary deployment folder to /var/www/html
+            sudo mv /var/www/html/build/* /var/www/html/
